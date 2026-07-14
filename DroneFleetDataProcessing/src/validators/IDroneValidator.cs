@@ -7,6 +7,6 @@ namespace DroneFleetDataProcessing.src.validators
 {
     interface IDroneValidator
     {
-        bool isValid(Drone drone);
+       public bool IsValid(Drone drone);
     }
 }
