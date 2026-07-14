@@ -24,6 +24,31 @@
 	e. בדיקה אם הקובץ מחזיר מערך ריק.
 	
 
+class DroneDataLoader
+
+Method: Load(string filepath)
+מקבל נתיב לקובץ
+מנהל את כל תהליך הבדיקה
+מחזיר: רשימה של אובייקטים,
+או זורק שגיאה מתאימה.
+
+Method: ValidatePath(filepath)
+מקבל נתיב לקובץ
+בודק אם הנתיב אינו ריק או null,
+בודק אם הקובץ קיים.
+זורק שגיאה אם True
+
+Method: ValidateJsonContent(string contextfile)
+מקבל את התוצאה של קריאת ה Json
+בודק אם הקובץ ריק או null
+זורק שגיאה אם True
+
+Method: ValidateDecerialized(List<Drone>? drones)
+מקבל את התוצאה של ה Deceralization
+בודק אם התוצאה היא null
+בודק אם הרשימה ריקה
+זורק שגיאה אם True
+
 
 אשר:
 
