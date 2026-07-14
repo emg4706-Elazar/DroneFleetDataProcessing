@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace DroneFleetDataProcessing.src.models
 {
@@ -10,7 +11,9 @@ namespace DroneFleetDataProcessing.src.models
         public string serialNumber { get; set; }
         public string model { get; set; }
         public string category { get; set; }
-        public string base_location { get; set; }
+
+        [JsonPropertyName("base_location")]
+        public string baseLocation { get; set; }
         public double flightHours { get; set; }
         public int batteryHealth { get; set; }
         public double maxRangeKm { get; set; }
