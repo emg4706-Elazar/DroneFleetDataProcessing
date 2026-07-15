@@ -27,9 +27,6 @@ namespace DroneFleetDataProcessing.src.services
         {
             string outputDirectory = Path.Combine(
                 AppContext.BaseDirectory,
-                "..",
-                "..",
-                "..",
                 "output");
 
             Directory.CreateDirectory(outputDirectory);

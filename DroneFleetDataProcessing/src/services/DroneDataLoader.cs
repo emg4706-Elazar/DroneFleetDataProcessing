@@ -16,12 +16,13 @@ namespace DroneFleetDataProcessing.src.services
     {
 
         // Recieve filepath and return all file's context or match exception.
-        public List<Drone> Load(string filepath)
+        public List<Drone> Load(string filename)
         {
+            string filepathInput = GetInputPath(filename);
             try
             {
-                ValidatePath(filepath);
-                string contextFile = File.ReadAllText(filepath);
+                ValidatePath(filepathInput);
+                string contextFile = File.ReadAllText(filepathInput);
                 ValidateJsonContent(contextFile);
 
                 List<Drone>? drones = JsonSerializer.Deserialize<List<Drone>>(contextFile);
@@ -119,6 +120,16 @@ namespace DroneFleetDataProcessing.src.services
                 throw new EmptyListException();
             }
 
+        }
+        private static string GetInputPath(string filename)
+        {
+            string filepath = Path.Combine(
+                AppContext.BaseDirectory,
+                "input",
+                "raw",
+                filename);
+
+            return filepath;
         }
     }
 }

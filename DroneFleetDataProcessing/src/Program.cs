@@ -15,7 +15,7 @@ namespace DroneFleetDataProcessing.src
     {
         public static void Main()
         {
-            string filepathInput = GetInputPath("drones_raw.json");
+            string filepathInput = "drones_raw.json";
             string filenameOutput = "drones_clean.json";
 
             try
@@ -47,15 +47,5 @@ namespace DroneFleetDataProcessing.src
             }
         }
 
-        private static string GetInputPath(string filename)
-        {
-            string filepath = Path.Combine(
-                AppContext.BaseDirectory,
-                "input",
-                "raw",
-                filename);
-
-            return filepath;
-        }
     }
 }
