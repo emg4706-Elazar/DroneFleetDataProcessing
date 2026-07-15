@@ -15,37 +15,39 @@ namespace DroneFleetDataProcessing.src
     {
         public static void Main()
         {
-            string filename = "drones_raw.json";
-
-            string filepath = Path.Combine(
-                AppContext.BaseDirectory,
-                "input",
-                "raw",
-                filename);
-
-
-            DroneDataLoader loader = new DroneDataLoader();
+            string filepathInput = GetInputPath("drones_raw.json");
+            string filenameOutput = "";
+            
             try
             {
-                //List<Drone> drones = loader.Load(filepath);
-                List<Drone> allDrones = loader.Load(filepath);
-                List<Drone> validDrones = new List<Drone>();
-                List<Drone> rejectedDrones = new List<Drone>();
+                DroneDataLoader loader = new DroneDataLoader();
+                List<Drone> drones = loader.Load(filepathInput);
 
-                var validator = new DroneValidator();
-                var storer = new DronesDataValidator(validator);
 
-                storer.ValidateFleet(allDrones, validDrones, rejectedDrones);
+                DroneDataSaver saver = new DroneDataSaver();
+                saver.Save(drones, filenameOutput);
+                Console.WriteLine("The Process completed successfuly");
 
             }
             catch (DroneDataLoaderException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
             }
+            catch(DroneDataSaverException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
         }
 
+        private static string GetInputPath(string filename)
+        {
+            string filepath = Path.Combine(
+                AppContext.BaseDirectory,
+                "input",
+                "raw",
+                filename);
 
-
-        
+            return filepath;
+        }
     }
 }
