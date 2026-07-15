@@ -14,29 +14,57 @@ namespace DroneFleetDataProcessing.src
     {
         public static void Main()
         {
-            string filename = "drones_raw.json";
+            string filepathInput = GetInputPath("drones_raw.json");
+            string filepathOutput = GetOutputPath("drones_clean.json");
+            
+            try
+            {
+                DroneDataLoader loader = new DroneDataLoader();
+                List<Drone> drones = loader.Load(filepathInput);
 
+
+                DroneDataSaver saver = new DroneDataSaver();
+                saver.Save(drones, filepathOutput);
+                Console.WriteLine("The Process completed successfuly");
+
+            }
+            catch (DroneDataLoaderException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch(DroneDataSaverException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+        }
+
+        private static string GetInputPath(string filename)
+        {
             string filepath = Path.Combine(
                 AppContext.BaseDirectory,
                 "input",
                 "raw",
                 filename);
 
-
-            DroneDataLoader loader = new DroneDataLoader();
-            try
-            {
-                List<Drone> drones = loader.Load(filepath);
-                Console.WriteLine("The Process was successfuly");
-            }
-            catch (DroneDataLoaderException e)
-            {
-                Console.WriteLine($"Error: {e.Message}");
-            }
+            return filepath;
         }
 
+        private static string GetOutputPath(string filename)
+        {
+            string outputDirectory = Path.Combine(
+                AppContext.BaseDirectory,
+                "..",
+                "..",
+                "..",
+                "output");
+            
+            Directory.CreateDirectory(outputDirectory);
 
-
-        
+            string outputPath = Path.Combine(
+            outputDirectory,
+            filename);
+  
+            return outputPath;
+        }    
     }
 }
