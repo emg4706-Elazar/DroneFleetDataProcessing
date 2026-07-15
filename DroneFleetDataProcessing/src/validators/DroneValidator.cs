@@ -22,9 +22,6 @@ namespace DroneFleetDataProcessing.src.validators
         private static readonly Regex SerialNumberPattern = new Regex(@"^DR-\d{4}$");
 
         private static readonly string[] ValidModels = { "Falcon-X", "Raven-M", "SkyEye-2", "CargoBee", "Storm-4", "Scout-Lite" };
-        public enum ValidCategory  { Recon, Patrol, Mapping, Delivery, Search };
-        public enum ValidBaseLocation  { North, South, Central, East, West };
-        public enum ValidStatus { Operational, Maintenance, Grounded, Training };
 
         public bool IsValid(Drone drone)
         {
@@ -69,23 +66,28 @@ namespace DroneFleetDataProcessing.src.validators
         }
         private bool IsValidStatus(string status)
         {
-            return Enum.IsDefined(typeof(ValidStatus), status);
+            if (string.IsNullOrWhiteSpace(status)) { return false; }
+            return Enum.IsDefined(typeof(DroneStatus), status);
         }
         private bool IsValidCategory(string category)
         {
-            return Enum.IsDefined(typeof(ValidCategory), category);
+            if (string.IsNullOrWhiteSpace(category)) { return false; }
+            return Enum.IsDefined(typeof(DroneCategory), category);
         }
         private bool IsValidBaseLocation(string baseLocation)
         {
-            return Enum.IsDefined(typeof(ValidBaseLocation), baseLocation);
+            if (string.IsNullOrWhiteSpace(baseLocation)) { return false; }
+
+            return Enum.IsDefined(typeof(DroneBaseLocation), baseLocation);
         }
         private bool IsValidModel(string model)
         {
+            if (model == null) { return false; }
             return ValidModels.Contains(model);
         }
         private bool MeetsOperationalStandard(int battery, string status)
         {
-            if (battery < MinOperationalBattery && status == "Operational"){ return false; }
+            if (battery < MinOperationalBattery && status == nameof(DroneStatus.Operational)) { return false; }
 
             return true;
         }

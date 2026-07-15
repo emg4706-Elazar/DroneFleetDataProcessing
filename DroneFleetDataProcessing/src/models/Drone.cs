@@ -20,5 +20,14 @@ namespace DroneFleetDataProcessing.src.models
         public int missionsCompleted { get; set; }
         public string status { get; set; }
 
+        public string ToSummary() =>
+            $"ID: {id}," +
+            $" Serial Number: {serialNumber}," +
+            $" Model: {model}," +
+            $" Category: {category}," +
+            $" Status: {status}," +
+            $" Base: {baseLocation}," +
+            $" Battery: {batteryHealth}%," +
+            $" Flight Hours: {flightHours}";
     }
 }
