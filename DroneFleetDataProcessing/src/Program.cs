@@ -36,7 +36,7 @@ namespace DroneFleetDataProcessing.src
                 var storer = new DronesDataValidator(validator);
 
                 storer.ValidateFleet(allDrones, validDrones, rejectedDrones);
-
+  
             }
             catch (DroneDataLoaderException e)
             {
