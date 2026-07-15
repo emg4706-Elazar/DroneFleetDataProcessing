@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using DroneFleetDataProcessing.src.models;
 using DroneFleetDataProcessing.src.exceptions;
+using DroneFleetDataProcessing.src.validators;
 
 
 
@@ -26,8 +27,16 @@ namespace DroneFleetDataProcessing.src
             DroneDataLoader loader = new DroneDataLoader();
             try
             {
-                List<Drone> drones = loader.Load(filepath);
-                Console.WriteLine("The Process was successfuly");
+                //List<Drone> drones = loader.Load(filepath);
+                List<Drone> allDrones = loader.Load(filepath);
+                List<Drone> validDrones = new List<Drone>();
+                List<Drone> rejectedDrones = new List<Drone>();
+
+                var validator = new DroneValidator();
+                var storer = new DronesDataValidator(validator);
+
+                storer.ValidateFleet(allDrones, validDrones, rejectedDrones);
+
             }
             catch (DroneDataLoaderException e)
             {
