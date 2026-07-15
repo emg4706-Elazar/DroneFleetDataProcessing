@@ -15,7 +15,7 @@ namespace DroneFleetDataProcessing.src
         public static void Main()
         {
             string filepathInput = GetInputPath("drones_raw.json");
-            string filepathOutput = GetOutputPath("drones_clean.json");
+            string filenameOutput = "";
             
             try
             {
@@ -24,7 +24,7 @@ namespace DroneFleetDataProcessing.src
 
 
                 DroneDataSaver saver = new DroneDataSaver();
-                saver.Save(drones, filepathOutput);
+                saver.Save(drones, filenameOutput);
                 Console.WriteLine("The Process completed successfuly");
 
             }
@@ -48,23 +48,5 @@ namespace DroneFleetDataProcessing.src
 
             return filepath;
         }
-
-        private static string GetOutputPath(string filename)
-        {
-            string outputDirectory = Path.Combine(
-                AppContext.BaseDirectory,
-                "..",
-                "..",
-                "..",
-                "output");
-            
-            Directory.CreateDirectory(outputDirectory);
-
-            string outputPath = Path.Combine(
-            outputDirectory,
-            filename);
-  
-            return outputPath;
-        }    
     }
 }

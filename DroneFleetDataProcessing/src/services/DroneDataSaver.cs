@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using DroneFleetDataProcessing.src.models;
 using DroneFleetDataProcessing.src.exceptions;
+using DroneFleetDataProcessing.src.services;
 
 namespace DroneFleetDataProcessing.src.services
 {
@@ -19,11 +20,24 @@ namespace DroneFleetDataProcessing.src.services
                 };
 
                 string strToWrite = JsonSerializer.Serialize(drones, options);
-                
-                File.WriteAllText(filepathOutput, strToWrite);
+
+                FileWriter writer = new FileWriter();
+                writer.Write(filepathOutput, strToWrite);
 
             }
-            catch(Exception e)
+            catch(ArgumentNullException e)
+            {
+                throw new DroneDataSaverException(e.Message);
+            }
+            catch(InvalidPathException e)
+            {
+                throw new DroneDataSaverException(e.Message);
+            }
+            catch(UnauthorizedAccessException e)
+            {
+                throw new DroneDataSaverException(e.Message);
+            }
+            catch(IOException e)
             {
                 throw new DroneDataSaverException(e.Message);
             }
