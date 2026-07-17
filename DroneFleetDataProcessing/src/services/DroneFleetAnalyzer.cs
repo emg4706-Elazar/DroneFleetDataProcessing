@@ -7,7 +7,7 @@ namespace DroneFleetDataProcessing.src.services
 {
     class DroneAnalyzer
     {
-        public FleetReport GenerateReport(List<Drone> validDrones, int allDrones, int rejectedDrones)
+        public FleetReport AnalyzeReport(List<Drone> validDrones, int allDrones, int rejectedDrones)
         {
             return new FleetReport
             {
@@ -17,11 +17,11 @@ namespace DroneFleetDataProcessing.src.services
                 NonOperationalDrones = GetNonOperationalDrones(validDrones),
                 TopFiveDroneByFlightHours = GetTopFiveDroneByFlightHours(validDrones),
                 AvailableModels = GetAvailableModels(validDrones),
-                DroneByBase = GetDroneByBase(validDrones),
+                DronesByBase = GetDroneByBase(validDrones),
                 AverageBatteryByModel = GetAverageBatteryByModel(validDrones),
                 BestModelByMissions = GetBestModelByMissions(validDrones),
-                BestModelTotalMissions = BestModelTotalMissions(validDrones)
-
+                BestModelTotalMissions = BestModelTotalMissions(validDrones),
+                AdditionalAnalysisLines = GetBasesWithHighBatteryOperationalDrones(validDrones)
             };
 
         }
@@ -98,6 +98,16 @@ namespace DroneFleetDataProcessing.src.services
                     .OrderByDescending(g => g.Sum(d => d.missionsCompleted))
                     .Select(g => g.Sum(d => d.missionsCompleted))
                     .First();
+        }
+        private List<string> GetBasesWithHighBatteryOperationalDrones(List<Drone> drones)
+        {
+            return drones
+                .Where(drone =>
+                    drone.status == "Operational" &&
+                    drone.batteryHealth > 80)
+                .Select(drone => drone.baseLocation)
+                .Distinct()
+                .ToList();
         }
     }
 }
