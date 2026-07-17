@@ -12,7 +12,7 @@ namespace DroneFleetDataProcessing.src.models
         public List<string> NonOperationalDrones { get; set; }
         public List<string> TopFiveDroneByFlightHours { get; set; }
         public List<string> AvailableModels { get; set; }
-        public Dictionary<string, int> DroneByBase { get; set; }
+        public Dictionary<string, int> DronesByBase { get; set; }
         public Dictionary<string, double> AverageBatteryByModel { get; set; }
         public string BestModelByMissions { get; set; }
         public int BestModelTotalMissions { get; set; }

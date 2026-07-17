@@ -8,7 +8,6 @@ using DroneFleetDataProcessing.src.exceptions;
 using DroneFleetDataProcessing.src.validators;
 
 
-
 namespace DroneFleetDataProcessing.src
 {
     class Program
@@ -30,12 +29,15 @@ namespace DroneFleetDataProcessing.src
                 var storer = new DronesDataValidator(validator);
 
                 storer.ValidateFleet(allDrones, validDrones, rejectedDrones);
-  
-
-
+ 
                 DroneDataSaver saver = new DroneDataSaver();
                 saver.Save(validDrones, filenameOutput);
-                Console.WriteLine("The Process completed successfuly");
+
+                DroneAnalyzer analyzer = new DroneAnalyzer();
+                FleetReport report = analyzer.AnalyzeReport(validDrones, allDrones.Count, rejectedDrones.Count);
+
+                DroneDataReporter reporter = new DroneDataReporter();
+                reporter.GenerateAndSaveReport(report, "analysis_report.txt");
             }
 
             catch (DroneDataLoaderException e)
@@ -43,6 +45,10 @@ namespace DroneFleetDataProcessing.src
                 Console.WriteLine($"Error: {e.Message}");
             }
             catch (DroneDataSaverException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (DroneDataReporterException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
             }

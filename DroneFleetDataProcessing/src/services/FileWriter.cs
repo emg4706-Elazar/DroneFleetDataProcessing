@@ -20,8 +20,6 @@ namespace DroneFleetDataProcessing.src.services
 
             string filepath = GetOutputPath(filename);
             File.WriteAllText(filepath, context);
-
-
         }
         private string GetOutputPath(string filename)
         {
