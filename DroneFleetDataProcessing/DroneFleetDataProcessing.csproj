@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="output\" />
+    <Compile Update="src\Program.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <None Update="input\raw\drones_raw.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="input\test_scenarios\drones_all_invalid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
