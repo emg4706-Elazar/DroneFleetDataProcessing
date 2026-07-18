@@ -15,7 +15,7 @@ namespace DroneFleetDataProcessing.src
         {
             Console.WriteLine("=== Drone Fleet Data Processing System ===\n");
 
-            string filepathInput = GetInputPath("drones_raw.json");
+            string filepathInput = "drones_raw.json";
             string filenameOutput = "drones_clean.json";
 
             string currentStepText = "Step 1: Reading raw data...";
@@ -33,7 +33,7 @@ namespace DroneFleetDataProcessing.src
                 var storer = new DronesDataValidator(validator);
 
                 storer.ValidateFleet(allDrones, validDrones, rejectedDrones);
-                Console.WriteLine($"{currentStepText} Valid records: {validDrones.Count} Rejected records: {rejectedDrones.Count}");
+                Console.WriteLine($"{currentStepText} Valid records: {validDrones.Count}, Rejected records: {rejectedDrones.Count}");
 
                 if (validDrones.Count == 0)
                 {
@@ -88,16 +88,5 @@ namespace DroneFleetDataProcessing.src
             }
         }
         
-
-        private static string GetInputPath(string filename)
-        {
-            string filepath = Path.Combine(
-                AppContext.BaseDirectory,
-                "input",
-                "raw",
-                filename);
-
-            return filepath;
-        }
     }
 }
