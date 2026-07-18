@@ -15,27 +15,48 @@ namespace DroneFleetDataProcessing.src
     {
         public static void Main()
         {
+            Console.WriteLine("=== Drone Fleet Data Processing System ===\n");
+
             string filepathInput = GetInputPath("drones_raw.json");
             string filenameOutput = "drones_clean.json";
 
+            string currentStepText = "Step 1: Reading raw data...";
             try
             {
                 DroneDataLoader loader = new DroneDataLoader();
                 List<Drone> allDrones = loader.Load(filepathInput);
+                Console.WriteLine($"{currentStepText} Read {allDrones.Count} records from raw file");
+
+                currentStepText = "Step 2: Validating data and creating clean dataset...";
 
                 List<Drone> validDrones = new List<Drone>();
                 List<Drone> rejectedDrones = new List<Drone>();
-
+            
                 var validator = new DroneValidator();
                 var storer = new DronesDataValidator(validator);
 
                 storer.ValidateFleet(allDrones, validDrones, rejectedDrones);
-  
+                Console.WriteLine($"{currentStepText} Valid records: {validDrones.Count} Rejected records: {rejectedDrones.Count}");
 
-
+                currentStepText = "Step 3: Saving clean data...";
                 DroneDataSaver saver = new DroneDataSaver();
                 saver.Save(validDrones, filenameOutput);
-                Console.WriteLine("The Process completed successfuly");
+
+                string fullOutputPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "output", filenameOutput));
+                Console.WriteLine($"{currentStepText} Clean data saved to: {fullOutputPath}");
+
+                currentStepText = "Step 4: Reloading clean data...";
+                List<Drone> reloadedDrones = loader.Load(fullOutputPath);
+                Console.WriteLine($"{currentStepText} Loaded {reloadedDrones.Count} records from clean dataset");
+
+                currentStepText = "Step 5: Performing analysis...";
+                DroneAnalyzer analyzer = new DroneAnalyzer();
+                FleetReport report = analyzer.GenerateReport(reloadedDrones, allDrones.Count, rejectedDrones.Count);
+                Console.WriteLine($"{currentStepText} Analysis completed successfully");
+
+                currentStepText = "Step 6: Generating report...";
+
+                Console.WriteLine("\n=== Process completed successfully! ===");
             }
 
             catch (DroneDataLoaderException e)
@@ -45,6 +66,10 @@ namespace DroneFleetDataProcessing.src
             catch (DroneDataSaverException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e) 
+            {
+                Console.WriteLine(currentStepText);
             }
         }
 

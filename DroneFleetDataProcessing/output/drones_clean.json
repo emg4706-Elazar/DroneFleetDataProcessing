@@ -48,18 +48,6 @@
     "status": "Training"
   },
   {
-    "id": 99,
-    "serialNumber": "DR-0099",
-    "model": "Falcon-X",
-    "category": "Delivery",
-    "base_location": "Central",
-    "flightHours": 1031.1,
-    "batteryHealth": 24,
-    "maxRangeKm": 0,
-    "missionsCompleted": -1,
-    "status": "Maintenance"
-  },
-  {
     "id": 19,
     "serialNumber": "DR-0019",
     "model": "Scout-Lite",
@@ -252,30 +240,6 @@
     "status": "Maintenance"
   },
   {
-    "id": 88,
-    "serialNumber": "",
-    "model": "CargoBee",
-    "category": "Search",
-    "base_location": "Central",
-    "flightHours": 1239.2,
-    "batteryHealth": 44,
-    "maxRangeKm": 102.1,
-    "missionsCompleted": 893,
-    "status": "Grounded"
-  },
-  {
-    "id": 84,
-    "serialNumber": "DR-0084",
-    "model": "falcon-x",
-    "category": "Mapping",
-    "base_location": "Central",
-    "flightHours": 839.4,
-    "batteryHealth": 28,
-    "maxRangeKm": 15.1,
-    "missionsCompleted": 3964,
-    "status": "Grounded"
-  },
-  {
     "id": 54,
     "serialNumber": "DR-0054",
     "model": "Storm-4",
@@ -286,18 +250,6 @@
     "maxRangeKm": 43.1,
     "missionsCompleted": 200,
     "status": "Operational"
-  },
-  {
-    "id": 93,
-    "serialNumber": "DR-001",
-    "model": "Storm-4",
-    "category": "Search",
-    "base_location": "North",
-    "flightHours": 859.3,
-    "batteryHealth": 50,
-    "maxRangeKm": 28.9,
-    "missionsCompleted": 42,
-    "status": "Training"
   },
   {
     "id": 4,
@@ -444,30 +396,6 @@
     "status": "Operational"
   },
   {
-    "id": 90,
-    "serialNumber": "DR-0090",
-    "model": "SkyEye-2",
-    "category": "Delivery",
-    "base_location": "West",
-    "flightHours": -10,
-    "batteryHealth": 23,
-    "maxRangeKm": 8.9,
-    "missionsCompleted": 320,
-    "status": "Training"
-  },
-  {
-    "id": 97,
-    "serialNumber": "DR-0097",
-    "model": "Unknown",
-    "category": "Invalid",
-    "base_location": "East",
-    "flightHours": 2248.8,
-    "batteryHealth": 54,
-    "maxRangeKm": 109.3,
-    "missionsCompleted": 292,
-    "status": "Operational"
-  },
-  {
     "id": 53,
     "serialNumber": "DR-0053",
     "model": "Raven-M",
@@ -478,18 +406,6 @@
     "maxRangeKm": 147.1,
     "missionsCompleted": 166,
     "status": "Training"
-  },
-  {
-    "id": 98,
-    "serialNumber": "DR-0098",
-    "model": "Falcon-X",
-    "category": "Recon",
-    "base_location": "Central",
-    "flightHours": -5,
-    "batteryHealth": 110,
-    "maxRangeKm": 109.3,
-    "missionsCompleted": 22,
-    "status": "Operational"
   },
   {
     "id": 83,
@@ -526,30 +442,6 @@
     "maxRangeKm": 70.3,
     "missionsCompleted": 104,
     "status": "Grounded"
-  },
-  {
-    "id": 94,
-    "serialNumber": "DR-0094",
-    "model": "Storm-4",
-    "category": "Search",
-    "base_location": "West",
-    "flightHours": 1873.3,
-    "batteryHealth": 67,
-    "maxRangeKm": 112.4,
-    "missionsCompleted": 22,
-    "status": "Broken"
-  },
-  {
-    "id": 100,
-    "serialNumber": "DR-0100",
-    "model": "Falcon-X",
-    "category": "Search",
-    "base_location": "South",
-    "flightHours": 2287,
-    "batteryHealth": 10,
-    "maxRangeKm": 47.8,
-    "missionsCompleted": 113,
-    "status": "Operational"
   },
   {
     "id": 46,
@@ -684,18 +576,6 @@
     "status": "Training"
   },
   {
-    "id": 89,
-    "serialNumber": "DR-0089",
-    "model": "Storm-4",
-    "category": "Search",
-    "base_location": "East",
-    "flightHours": 1138.4,
-    "batteryHealth": 67,
-    "maxRangeKm": 107,
-    "missionsCompleted": 6000,
-    "status": "Operational"
-  },
-  {
     "id": 36,
     "serialNumber": "DR-0036",
     "model": "Falcon-X",
@@ -766,42 +646,6 @@
     "maxRangeKm": 35.9,
     "missionsCompleted": 131,
     "status": "Grounded"
-  },
-  {
-    "id": 85,
-    "serialNumber": "DR-0085",
-    "model": "Raven-M",
-    "category": "Mapping",
-    "base_location": "North",
-    "flightHours": 1967.7,
-    "batteryHealth": 15,
-    "maxRangeKm": 47.1,
-    "missionsCompleted": 3878,
-    "status": "Operational"
-  },
-  {
-    "id": 87,
-    "serialNumber": "D-0001",
-    "model": "Storm-4",
-    "category": "Search",
-    "base_location": "West",
-    "flightHours": 234.7,
-    "batteryHealth": 43,
-    "maxRangeKm": 108.5,
-    "missionsCompleted": 155,
-    "status": "Maintenance"
-  },
-  {
-    "id": 86,
-    "serialNumber": "DR-0086",
-    "model": "Falcon-X",
-    "category": "Delivery",
-    "base_location": "Unknown",
-    "flightHours": 1214.2,
-    "batteryHealth": 44,
-    "maxRangeKm": 150,
-    "missionsCompleted": 9,
-    "status": "Maintenance"
   },
   {
     "id": 29,
@@ -984,18 +828,6 @@
     "status": "Grounded"
   },
   {
-    "id": 92,
-    "serialNumber": "DR-0092",
-    "model": "SkyEye-2",
-    "category": "Patrol",
-    "base_location": "South",
-    "flightHours": 763.9,
-    "batteryHealth": 35,
-    "maxRangeKm": 0,
-    "missionsCompleted": 556,
-    "status": "Operational"
-  },
-  {
     "id": 10,
     "serialNumber": "DR-0010",
     "model": "Falcon-X",
@@ -1018,18 +850,6 @@
     "maxRangeKm": 56.1,
     "missionsCompleted": 2239,
     "status": "Maintenance"
-  },
-  {
-    "id": -1,
-    "serialNumber": "INVALID",
-    "model": "Raven-M",
-    "category": "Recon",
-    "base_location": "Central",
-    "flightHours": 306.2,
-    "batteryHealth": 56,
-    "maxRangeKm": 129.5,
-    "missionsCompleted": 339,
-    "status": "Grounded"
   },
   {
     "id": 26,
@@ -1102,30 +922,6 @@
     "maxRangeKm": 67.1,
     "missionsCompleted": 44,
     "status": "Operational"
-  },
-  {
-    "id": 91,
-    "serialNumber": "DR-0091",
-    "model": "Raven-M",
-    "category": "Recon",
-    "base_location": "Central",
-    "flightHours": 3000,
-    "batteryHealth": 80,
-    "maxRangeKm": 114.1,
-    "missionsCompleted": 30,
-    "status": "Maintenance"
-  },
-  {
-    "id": 95,
-    "serialNumber": "DR-0084",
-    "model": "Storm-4",
-    "category": "Mapping",
-    "base_location": "South",
-    "flightHours": 1175.1,
-    "batteryHealth": 81,
-    "maxRangeKm": 121.9,
-    "missionsCompleted": 4,
-    "status": "Maintenance"
   },
   {
     "id": 34,
