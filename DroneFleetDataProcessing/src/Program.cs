@@ -35,6 +35,11 @@ namespace DroneFleetDataProcessing.src
                 storer.ValidateFleet(allDrones, validDrones, rejectedDrones);
                 Console.WriteLine($"{currentStepText} Valid records: {validDrones.Count} Rejected records: {rejectedDrones.Count}");
 
+                if (validDrones.Count == 0)
+                {
+                    throw new InvalidOperationException("No valid records found for analysis!");
+                }
+
                 currentStepText = "Step 3: Saving clean data...";
                 DroneDataSaver saver = new DroneDataSaver();
                 saver.Save(validDrones, filenameOutput);
@@ -48,7 +53,7 @@ namespace DroneFleetDataProcessing.src
 
                 currentStepText = "Step 5: Performing analysis...";
                 DroneAnalyzer analyzer = new DroneAnalyzer();
-                FleetReport report = analyzer.GenerateReport(reloadedDrones, allDrones.Count, rejectedDrones.Count);
+                FleetReport report = analyzer.AnalyzeReport(reloadedDrones, allDrones.Count, rejectedDrones.Count);
                 Console.WriteLine($"{currentStepText} Analysis completed successfully");
 
                 currentStepText = "Step 6: Generating report...";
@@ -61,12 +66,28 @@ namespace DroneFleetDataProcessing.src
 
                 Console.WriteLine("\n=== Process completed successfully! ===");
             }
-            catch (Exception e)
+            catch (DroneDataLoaderException e)
             {
                 Console.WriteLine(currentStepText);
                 Console.WriteLine($"Error: {e.GetType().Name} - {e.Message}");
             }
+            catch (DroneDataSaverException e)
+            {
+                Console.WriteLine(currentStepText);
+                Console.WriteLine($"Error: {e.GetType().Name} - {e.Message}");
+            }
+            catch (DroneDataReporterException e)
+            {
+                Console.WriteLine(currentStepText);
+                Console.WriteLine($"Error: {e.GetType().Name} - {e.Message}");
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine(currentStepText);
+                Console.WriteLine($"Error: {e.Message}");
+            }
         }
+        
 
         private static string GetInputPath(string filename)
         {
