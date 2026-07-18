@@ -7,8 +7,6 @@ using DroneFleetDataProcessing.src.models;
 using DroneFleetDataProcessing.src.exceptions;
 using DroneFleetDataProcessing.src.validators;
 
-
-
 namespace DroneFleetDataProcessing.src
 {
     class Program
@@ -28,10 +26,9 @@ namespace DroneFleetDataProcessing.src
                 Console.WriteLine($"{currentStepText} Read {allDrones.Count} records from raw file");
 
                 currentStepText = "Step 2: Validating data and creating clean dataset...";
-
                 List<Drone> validDrones = new List<Drone>();
                 List<Drone> rejectedDrones = new List<Drone>();
-            
+
                 var validator = new DroneValidator();
                 var storer = new DronesDataValidator(validator);
 
@@ -56,20 +53,18 @@ namespace DroneFleetDataProcessing.src
 
                 currentStepText = "Step 6: Generating report...";
 
+                DroneDataReporter reporter = new DroneDataReporter();
+                reporter.GenerateAndSaveReport(report, "analysis_report.txt");
+
+                string fullReportPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "output", "analysis_report.txt"));
+                Console.WriteLine($"{currentStepText} Report generated successfully: {fullReportPath}");
+
                 Console.WriteLine("\n=== Process completed successfully! ===");
             }
-
-            catch (DroneDataLoaderException e)
-            {
-                Console.WriteLine($"Error: {e.Message}");
-            }
-            catch (DroneDataSaverException e)
-            {
-                Console.WriteLine($"Error: {e.Message}");
-            }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 Console.WriteLine(currentStepText);
+                Console.WriteLine($"Error: {e.GetType().Name} - {e.Message}");
             }
         }
 
